@@ -4,24 +4,31 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
+
+import java.util.Date;
+
 @Entity
-@Table (name = "Personaje")
-public class Personaje {
+@Table(name = "ProgramaTv")
+public class ProgramaTV {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdPersonaje")
+    @Column(name = "IdProgramaTv")
     private Integer id;
 
-    @Column(name = "NomPersonaje", nullable = false, length = 50)
-    private String nombre;
+    @Column(name = "Titulo", nullable = false, length = 250)
+    private String titulo;
 
-    @Column(name = "ApePersonaje", nullable = false, length = 50)
-    private String apellido;
+    @Column(name = "Resumen", nullable = false, length = 250)
+    private String resumen;
 
-    @Column(name = "FechNacPersonaje", nullable = false)
+    @Column(name = "FechaInicio", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fechaNacimiento;
+    private Date fechaInicio;
+
+    @ManyToOne
+    @JoinColumn(name = "IdPersonaje", nullable = false)
+    private Personaje personaje;
 
     // Getters y Setters
 
@@ -33,27 +40,35 @@ public class Personaje {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getResumen() {
+        return resumen;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setResumen(String resumen) {
+        this.resumen = resumen;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Personaje getPersonaje() {
+        return personaje;
+    }
+
+    public void setPersonaje(Personaje personaje) {
+        this.personaje = personaje;
     }
 }
